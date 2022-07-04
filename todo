@@ -1,0 +1,9 @@
+main.go
+	//@todo register the binary as a service
+	//@todo if there is no config file then create one with defaults
+	//@todo each collector should be it's own function or even its own file?
+	//@todo make prefix /dev/X come from config file and be a list
+	//@todo do below for each value in list
+	//@todo construct prometheus stat name from either device or mountpoint based on the configuration file
+	//@todo make port come from config file
+	//@todo make interface also come from port so we can handle locking to ip range in case of multiple interfaces

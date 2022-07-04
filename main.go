@@ -43,6 +43,7 @@ type harddrive struct {
 	mountpoint string
 }
 
+//@todo register the binary as a service
 func main() {
 	//@todo if there is no config file then create one with defaults
 	cfg, err := ini.Load("/etc/prometheus_system_exporter/settings.ini") // initialize a CFG
@@ -56,6 +57,8 @@ func main() {
 	fmt.Println("Allowed Drive Prefixes", cfg.Section("drives").Key("allowed_prefixes").String())
 	setting_disk_percentage, _ := cfg.Section("collectors").Key("disk_space_percentage").Bool()
 
+	//@todo each collector should be it's own function or even its own file?
+	//Disk percentage collector
 	if setting_disk_percentage {
 		fmt.Println("Disk space percentage collector enabled")
 
@@ -102,5 +105,6 @@ func main() {
 	// via an HTTP server. "/metrics" is the usual endpoint for that.
 	http.Handle("/metrics", promhttp.Handler())
 	//@todo make port come from config file
+	//@todo make interface also come from port so we can handle locking to ip range in case of multiple interfaces
 	log.Fatal(http.ListenAndServe(":9091", nil))
 }
