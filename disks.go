@@ -29,7 +29,6 @@ func ExportDisks() {
 	if setting_disk_percentage {
 		fmt.Println("Disk space percentage collector enabled")
 
-		//@todo make the infinite loop a go routine that passes in the current tempcollector object
 		out, err := exec.Command("df", "-h").Output()
 		if err != nil {
 			fmt.Println(err)
@@ -38,8 +37,6 @@ func ExportDisks() {
 		prefixes := strings.Split(string(setting_disk_prefixes[:]), ",")
 		for _, d := range dfout {
 			for _, pre := range prefixes {
-				//@todo make prefix /dev/X come from config file and be a list
-				//@todo do below for each value in list
 				if strings.HasPrefix(d, strings.TrimSpace(pre)) {
 					curdev := strings.Fields(d)
 					hd := harddrive{
@@ -79,8 +76,6 @@ func ExportDisks() {
 								strings.Replace(curdev[4], "%", "", -1), //percentage used but we strip the percent sign 20% > 20
 								curdev[5],                               //mount point ex /boot/efi
 							}
-							//for _, d := range dfout {
-							//	fmt.Println("\n", d)
 							percent, _ := strconv.ParseFloat(hd.percentage, 32)
 							// if err != nil {
 							// 	fmt.Println("Error converting disk used percentage to float", err)

@@ -5,7 +5,7 @@ aults
 	//@todo make matching exporter files for windows
 	//@todo make update argument that will automatically update the agent from master git branch
 	//@todo auto build binaries with github webhooks
-	//@todo check if these need to be in an infinite loop to update
 	//@todo make port come from config file
 	//@todo make interface also come from port so we can handle locking to ip range in case of multiple interfaces
+we can handle locking to ip range in case of multiple interfaces
 e of multiple interfaces

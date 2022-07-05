@@ -10,20 +10,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-// var (
-// 	diskPerc = prometheus.NewGauge(prometheus.GaugeOpts{
-// 		Name: "disk_space_percentage",
-// 		Help: "percentage for each disk mount point",
-// 	})
-// hdFailures = prometheus.NewCounterVec(
-// 	prometheus.CounterOpts{
-// 		Name: "hd_errors_total",
-// 		Help: "Number of hard-disk errors.",
-// 	},
-// 	[]string{"device"},
-// )
-// )
-
 // func init() {
 // 	// Metrics have to be registered to be exposed:
 // 	prometheus.MustRegister(diskPerc)
@@ -47,7 +33,6 @@ func main() {
 	//Get the settings from config file
 	//fmt.Println("App Mode:", cfg.Section("").Key("app_mode").String())
 	fmt.Println("Allowed Drive Prefixes", Cfg.Section("drives").Key("allowed_prefixes").String())
-	//@todo check if these need to be in an infinite loop to update
 	go ExportDisks()
 	go ExportMemory()
 
