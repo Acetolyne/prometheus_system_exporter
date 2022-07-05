@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -67,6 +68,8 @@ func ExportMemory() {
 					tempcollector.Set(percent)
 				}
 			}
+			fmt.Println("DELAY:", Delay)
+			time.Sleep(time.Duration(Delay) * time.Second)
 		}
 	}
 }

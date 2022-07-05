@@ -31,6 +31,8 @@ import (
 
 //@todo if there is no config file then create one with defaults
 var Cfg, _ = ini.Load("/etc/prometheus_system_exporter/settings.ini") // initialize a CFG
+var Delay, _ = Cfg.Section("collectors").Key("delay_seconds").Int()
+
 // if err != nil {
 // 	fmt.Printf("Fail to read file: %v", err)
 // 	os.Exit(1)
