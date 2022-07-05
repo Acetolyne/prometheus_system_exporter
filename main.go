@@ -39,8 +39,6 @@ func main() {
 	// The Handler function provides a default handler to expose metrics
 	// via an HTTP server. "/metrics" is the usual endpoint for that.
 	http.Handle("/metrics", promhttp.Handler())
-	//@todo make port come from config file
-	//@todo make interface also come from port so we can handle locking to ip range in case of multiple interfaces
 
 	log.Fatal(http.ListenAndServe(Cfg.Section("general").Key("ip").String()+":"+Cfg.Section("general").Key("port").String(), nil))
 }

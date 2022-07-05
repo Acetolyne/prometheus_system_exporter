@@ -19,7 +19,6 @@ func ExportCPU() {
 	//@todo figure out where to get the stats for CPU  /proc/stat?
 	setting_cpu_percentage, _ := Cfg.Section("collectors").Key("cpu_percentage").Bool()
 
-	//@todo export other stats as well like total memory etc
 	//Disk percentage collector
 	if setting_cpu_percentage {
 		fmt.Println("CPU percentage collector enabled")
