@@ -4,12 +4,6 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"os/exec"
-	"strconv"
-	"strings"
-
-	"github.com/prometheus/client_golang/prometheus"
 )
 
 // type memory struct {
@@ -38,32 +32,33 @@ func ExportCPU() {
 		// for _, d := range dfout {
 		// 	if strings.HasPrefix(d, "Mem:") {
 		// 		curdev := strings.Fields(d)
-				// mem := memory{
-				// 	curdev[1], //toal memory
-				// 	curdev[2], //used memory
-				// 	curdev[3], //free memory
-				// 	curdev[4], //shared memory
-				// 	curdev[5], //buffer/cache
-				// 	curdev[6], //available memory
-				// }
-				tempcollector := prometheus.NewGauge(prometheus.GaugeOpts{
-					Name: "cpu_used_percentage",
-					Help: "current cpu used in percentage",
-				})
-				//register if not already registered
-				err = prometheus.DefaultRegisterer.Register(tempcollector)
-				if err != nil {
-					fmt.Println("RegistrationError", err)
-				}
-				// used, _ := strconv.ParseFloat(mem.used, 64)
-				// total, _ := strconv.ParseFloat(mem.total, 64)
-				// large_percent := used / total * 10000
-				// fmt.Println(large_percent)
-				// small_percent := int(math.Round(large_percent))
-				// percent := float64(small_percent) / 100
-				// fmt.Println(percent)
-				// tempcollector.Set(percent)
-			}
-		}
-	//}
+		// mem := memory{
+		// 	curdev[1], //toal memory
+		// 	curdev[2], //used memory
+		// 	curdev[3], //free memory
+		// 	curdev[4], //shared memory
+		// 	curdev[5], //buffer/cache
+		// 	curdev[6], //available memory
+		// }
+		// tempcollector := prometheus.NewGauge(prometheus.GaugeOpts{
+		// 	Name: "cpu_used_percentage",
+		// 	Help: "current cpu used in percentage",
+		// })
+		//register if not already registered
+		// err = prometheus.DefaultRegisterer.Register(tempcollector)
+		// if err != nil {
+		// 	fmt.Println("RegistrationError", err)
+		// }
+		// used, _ := strconv.ParseFloat(mem.used, 64)
+		// total, _ := strconv.ParseFloat(mem.total, 64)
+		// large_percent := used / total * 10000
+		// fmt.Println(large_percent)
+		// small_percent := int(math.Round(large_percent))
+		// percent := float64(small_percent) / 100
+		// fmt.Println(percent)
+		// tempcollector.Set(percent)
+	}
 }
+
+//}
+//}
