@@ -61,10 +61,10 @@ func ExportMemory() {
 					used, _ := strconv.ParseFloat(mem.used, 64)
 					total, _ := strconv.ParseFloat(mem.total, 64)
 					large_percent := used / total * 10000
-					fmt.Println(large_percent)
+					//fmt.Println(large_percent)
 					small_percent := int(math.Round(large_percent))
 					percent := float64(small_percent) / 100
-					fmt.Println(percent)
+					//fmt.Println(percent)
 					tempcollector.Set(percent)
 				}
 			}
