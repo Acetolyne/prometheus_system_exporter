@@ -14,8 +14,10 @@ the exporter WILL BE registered as a service but prometheus need to also be runn
 you should add a target in your jobs section specifying the port number indicated in your /etc/prometheus_system_exporter/settings.ini file, if you have not changed the default port then this will be 9091.
 an example of the section in the prometheus.yml file is below.
 
-  - job_name: node
+```
+- job_name: node
     # If prometheus-node-exporter is installed, grab stats about the local
     # machine by default.
     static_configs:
-            - targets: ['localhost:9100','localhost:9091']
+        - targets: ['localhost:9100','localhost:9091']
+```
