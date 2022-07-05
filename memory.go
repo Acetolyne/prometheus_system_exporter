@@ -68,7 +68,6 @@ func ExportMemory() {
 					tempcollector.Set(percent)
 				}
 			}
-			fmt.Println("DELAY:", Delay)
 			time.Sleep(time.Duration(Delay) * time.Second)
 		}
 	}
