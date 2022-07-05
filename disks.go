@@ -23,6 +23,7 @@ type harddrive struct {
 
 func ExportDisks() {
 	setting_disk_percentage, _ := Cfg.Section("collectors").Key("disk_space_percentage").Bool()
+	setting_disk_prefixes := Cfg.Section("drives").Key("allowed_prefixes").String()
 
 	//Disk percentage collector
 	if setting_disk_percentage {
@@ -37,7 +38,7 @@ func ExportDisks() {
 		for _, d := range dfout {
 			//@todo make prefix /dev/X come from config file and be a list
 			//@todo do below for each value in list
-			if strings.HasPrefix(d, "/dev/vda") {
+			if strings.HasPrefix(d, setting_disk_prefixes) {
 				curdev := strings.Fields(d)
 				hd := harddrive{
 					curdev[0],                               //device ex /dev/sda1

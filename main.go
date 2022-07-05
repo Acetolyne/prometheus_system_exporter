@@ -40,6 +40,8 @@ var Delay, _ = Cfg.Section("collectors").Key("delay_seconds").Int()
 
 //@todo register the binary as a service
 //@todo make matching exporter files for windows
+//@todo make update argument that will automatically update the agent from master git branch
+//@todo auto build binaries with github webhooks
 func main() {
 
 	//Get the settings from config file
