@@ -27,7 +27,17 @@ jobs:
           CGO_ENABLED: 0
         run: go build -o prometheus_system_exporter-linux_x86_64 .
 
+      - name: Determine prerelease status
+        id: prerelease_check
+        run: |
+          if [[ "${{ github.ref_name }}" == *-alpha ]]; then
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           files: prometheus_system_exporter-linux_x86_64
+          prerelease: ${{ steps.prerelease_check.outputs.prerelease }}
