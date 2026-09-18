@@ -3,7 +3,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os/exec"
 	"strconv"
 	"strings"
@@ -27,11 +27,11 @@ func ExportDisks() {
 
 	//Disk percentage collector
 	if setting_disk_percentage {
-		fmt.Println("Disk space percentage collector enabled")
+		log.Println("Disk space percentage collector enabled")
 
 		out, err := exec.Command("df", "-h").Output()
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 		}
 		dfout := strings.Split(string(out[:]), "\n")
 		prefixes := strings.Split(string(setting_disk_prefixes[:]), ",")
@@ -56,14 +56,14 @@ func ExportDisks() {
 					//register if not already registered
 					err := prometheus.DefaultRegisterer.Register(tempcollector)
 					if err != nil {
-						fmt.Println("RegistrationError", err)
+						log.Println("RegistrationError", err)
 					}
 					//Start go routine to keep sending stats for each device sending in current tempcollector object and hd.device
 					go func(collector prometheus.Collector, dev string) {
 						for {
 							out, err := exec.Command("df", "-h", dev).Output()
 							if err != nil {
-								fmt.Println(err)
+								log.Println(err)
 							}
 							dfout := strings.Split(string(out[:]), "\n")
 							cur := dfout[1]

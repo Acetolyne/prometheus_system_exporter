@@ -3,7 +3,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"math"
 	"os/exec"
 	"strconv"
@@ -28,7 +28,7 @@ func ExportMemory() {
 	//@todo export other stats as well like total memory etc
 	//Disk percentage collector
 	if setting_memory_percentage {
-		fmt.Println("Memory percentage collector enabled")
+		log.Println("Memory percentage collector enabled")
 
 		tempcollector := prometheus.NewGauge(prometheus.GaugeOpts{
 			Name: "mem_used_percentage",
@@ -37,20 +37,20 @@ func ExportMemory() {
 		//register if not already registered
 		err := prometheus.DefaultRegisterer.Register(tempcollector)
 		if err != nil {
-			fmt.Println("RegistrationError", err)
+			log.Println("RegistrationError", err)
 		}
 		for {
 
 			out, err := exec.Command("free").Output()
 			if err != nil {
-				fmt.Println(err)
+				log.Println(err)
 			}
 			dfout := strings.Split(string(out[:]), "\n")
 			for _, d := range dfout {
 				if strings.HasPrefix(d, "Mem:") {
 					curdev := strings.Fields(d)
 					mem := memory{
-						curdev[1], //toal memory
+						curdev[1], //total memory
 						curdev[2], //used memory
 						curdev[3], //free memory
 						curdev[4], //shared memory
