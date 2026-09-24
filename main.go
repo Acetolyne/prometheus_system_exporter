@@ -29,7 +29,7 @@ port = 9091
 delay_seconds = 15
 disk_space_percentage = true
 memory_percentage = true
-cpu_percentage = false
+cpu_percentage = true
 cpu_temperature = true
 temp_in_fahrenheit = false
 
@@ -99,6 +99,7 @@ func main() {
 	log.Println("Allowed Drive Prefixes", Cfg.Section("drives").Key("allowed_prefixes").String())
 	go ExportDisks()
 	go ExportMemory()
+	go ExportCPU()
 	go ExportCPUTemp()
 
 	// The Handler function provides a default handler to expose metrics
